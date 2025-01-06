@@ -1,0 +1,44 @@
+.profile-card{
+    border: 1px solid var(--light-color);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 32px;
+    padding: 32px 24px;
+}
+
+.avatar-name{
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    grid-gap: 20px;
+}
+.ptofile-card__avatar{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-card__name{
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 50px;
+    gap: 4px;
+}
+
+.profile-card__text{
+    font-weight: 500;
+    font-family: 'jetbrains mono';
+}
+.profile-card__tags{
+    font-weight: 700;
+    font-family: 'JetBrains Mono';
+
+}
+.bad-text{
+    color: var(--light-color);
+    font-weight: 400;
+    font-family: 'JetBrains Mono';
+    font-size: 11px;
+}
+
