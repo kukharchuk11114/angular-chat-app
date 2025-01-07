@@ -2,7 +2,7 @@ export interface Profile{
     id: number,
     username: string,
     description: string,
-    avatrUrl: string | null,
+    avatarUrl: string | null,
     subscriptionsAmount: number,
     firstName: string,
     lastName: string,

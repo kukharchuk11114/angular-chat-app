@@ -11,6 +11,13 @@ body{
     background: var(--dark-color);
     color: var(--light-color);
 }
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 .skill-tag{
     border: 1px solid var(--light-color);
@@ -20,6 +27,7 @@ body{
     border-radius: 4px;
     display: inline;
     margin-right: 4px;
+    height: 24px;
     
 }
 
