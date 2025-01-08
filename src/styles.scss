@@ -10,6 +10,8 @@
 body{
     background: var(--dark-color);
     color: var(--light-color);
+    background-image: url(../public/assets/img/background.png);
+    background-repeat: no-repeat;
 }
 *,
 *:before,

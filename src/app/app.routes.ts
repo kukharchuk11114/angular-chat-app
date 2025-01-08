@@ -8,9 +8,9 @@ export const routes: Routes = [
     {path: '', component: LayoutComponent, children:[
 
         {path: '', component: SearchPageComponent},
-        {path: 'login', component: LoginPageComponent}
+        {path: 'profile', component: ProfilePageComponent} 
 
     ]},
-    {path: 'profile', component: ProfilePageComponent},
+    {path: 'login', component: LoginPageComponent},
 
 ];
