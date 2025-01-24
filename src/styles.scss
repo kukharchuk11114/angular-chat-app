@@ -5,6 +5,7 @@
     --dark-color: #000000;
     --light-color: #FFFFFF;
     --primary-color: #AE7AFF;
+    --grey-color: #5F646D;
 }
 
 body{
@@ -41,6 +42,36 @@ body{
     padding: 10px 20px;
     border-radius: 4px;
     font-family: 'JetBrains Mono';
+    width: 100%;
+    line-height: 24px;
+    border: 1px solid var(--dark-color);
+    margin-top: 40px;
+    
+}
+
+.btn-shadow{
+
+    position: relative;
+
+    &::before{
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        right: -4px;
+        background: var(--grey-color);
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        border-radius: 4px;
+    }
+
+}
+
+.h1{
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 800;
+    font-family: 'JetBrains Mono';
 
 }
 
@@ -55,6 +86,39 @@ body{
 .subtitle{
     font-size: 14px;
     line-height: 20;
+    font-family: 'JetBrains Mono';
+
+}
+
+.tt-control-label{
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    font-family: 'JetBrains Mono';
+    display: block;
+
+}
+
+.tt-input{
+    display: block;
+    border: 1px solid var(--dark-color);
+    border-radius: 4px;
+    padding: 12px 20px;
+    background: var(--dark-color);
+    font-weight: 400px;
+    font-size: 14px;
+    line-height: 21px;
+    margin-top: 8px;
+    color: var(--light-color);
+}
+.mb-16{
+    margin-bottom: 16px;
+}
+.mp-32{
+    margin-bottom: 32px;
+}
+.mb-60{
+    margin-bottom: 60px;
     font-family: 'JetBrains Mono';
 
 }
