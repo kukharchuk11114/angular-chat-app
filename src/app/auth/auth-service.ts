@@ -7,12 +7,24 @@ import { HttpClient } from "@angular/common/http";
 export class AuthService {
     http :HttpClient = inject(HttpClient)
 
-    baseApiUrl :string = 'https://icherniakov.ru/yt-course/account/test_accounts'
+    baseApiUrl :string = 'https://icherniakov.ru/yt-course/auth/'
 
-login(payload:{username:string, passwaord:string}){
-    return this.http.post(
-        `${this.baseApiUrl}token`,
-        payload,
-    )
-}
+    login(payload:{username:string, password:string}){
+        const fd = new FormData()
+        fd.append('username', payload.username)
+        fd.append('password', payload.password)
+
+        console.log('Відправляємо дані:', {
+            username: payload.username,
+            password: payload.password
+        })
+
+        return this.http.post(
+            `${this.baseApiUrl}token`,
+            fd,
+            {
+                observe: 'response'
+            }
+        )
+    }
 }
