@@ -4,9 +4,10 @@ import { Inject, inject } from "@angular/core";
 import { catchError, throwError } from "rxjs";
 
 export const authTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
-
-   const token = inject(AuthService).token
-
+    
+    const authService: AuthService = inject(AuthService)
+    const token = authService.token
+    
    if(!token) return next(req)
 
     req = req.clone({
@@ -19,19 +20,21 @@ export const authTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown
         .pipe(
             catchError( error => {
                 if(error.status === 403){
-                    return refreshAndProceed( AuthService, req, next)
+                    return refreshAndProceed( authService, req, next)
                 }
                 return throwError(error)
             })
             )
-        )
-
+        
 }
+
 const refreshAndProceed = (
 
-    AuthService: AuthService,
+    authService: AuthService,
     req: HttpRequest<any>,
     next: HttpHandlerFn
-    
-) =>{return}
+) => {
+    // TODO: Implement refresh token logic
+    return next(req);
+}
 
