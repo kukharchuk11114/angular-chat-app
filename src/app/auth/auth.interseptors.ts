@@ -1,14 +1,14 @@
 import { HttpHandlerFn, HttpInterceptorFn, HttpRequest } from "@angular/common/http";
 import { AuthService } from "./auth-service";
 import { Inject, inject } from "@angular/core";
-import { catchError, throwError } from "rxjs";
+import { catchError, switchMap, throwError } from "rxjs";
 
 export const authTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
     
     const authService: AuthService = inject(AuthService)
     const token = authService.token
     
-   if(!token) return next(req)
+   if(!token) return next(addToken(req, token!))
 
     req = req.clone({
         setHeaders: {
@@ -35,6 +35,17 @@ const refreshAndProceed = (
     next: HttpHandlerFn
 ) => {
     // TODO: Implement refresh token logic
-    return next(req);
+    return authService.refreshAuthToken().pipe(
+        switchMap(() => {
+            return next(addToken(req, authService.token!))
+        })
+    )
 }
 
+const addToken = (req: HttpRequest<any>, token: string): HttpRequest<any> => {
+    return req.clone({
+        setHeaders: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}

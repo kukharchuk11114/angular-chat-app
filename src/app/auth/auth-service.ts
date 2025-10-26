@@ -41,13 +41,7 @@ export class AuthService {
             `${this.baseApiUrl}token`,
             fd,
             ).pipe(
-                tap(val => {
-                    this.token = val.access_token
-                    this.refreshToken = val.refresh_token
-
-                    this.cookieService.set('token', this.token)
-                    this.cookieService.set('refreshToken', this.refreshToken)
-                })
+                tap(val => this.saveTokens(val))
             )
     }
 
@@ -59,11 +53,20 @@ export class AuthService {
         this.router.navigate(['/login'])
     }
 
+    saveTokens(res: TokenResponse) {
+        this.token = res.access_token
+        this.refreshToken = res.refresh_token
+
+        this.cookieService.set('token', this.token)
+        this.cookieService.set('refreshToken', this.refreshToken)
+}
+
     refreshAuthToken(){
          return this.http.post<TokenResponse>(
             `${this.baseApiUrl}token`,
             { refresh_token: this.refreshToken }
         ).pipe(
+            tap(val => this.saveTokens(val)),
             catchError(err => {
                 this.logout()
                 return throwError(() => err)
